@@ -1,5 +1,5 @@
 Import-Module "AWSPowerShell.NetCore"
-Describe Find-EC2Instance {
+Describe Find-MeInstance {
     #Mocks
     Mock New-EC2Tag
     Mock Get-EC2Instance
@@ -121,7 +121,7 @@ Describe Find-EC2Instance {
         $AMIID = "ami-00c3d41691e25e54c", "ami-00c3d41691e25e54d"
         $Region = "ap-southeast-2"
         $InstanceID = "i-035ce67f82e649970"
-        $result = Find-EC2Instance -InstanceID $InstanceID -Region $Region -AMIID $AMIID
+        $result = Find-MeInstance -InstanceID $InstanceID -Region $Region -AMIID $AMIID
         #Assert
 
         It "Should not return null" {
@@ -245,7 +245,7 @@ Describe Find-EC2Instance {
         $AMIID = "ami-00c3d41691e25e54c", "ami-00c3d41691e25e54d"
         $Region = "ap-southeast-2"
         $InstanceID = "i-035ce67f82e649970"
-        $result = Find-EC2Instance -InstanceID $InstanceID -Region $Region -AMIID $AMIID
+        $result = Find-MeInstance -InstanceID $InstanceID -Region $Region -AMIID $AMIID
         #Assert
 
         It "Should return null" {
@@ -263,7 +263,7 @@ Describe Find-EC2Instance {
         #Assert
 
         It "Should Throw" {
-            {$result = Find-EC2Instance -InstanceID $InstanceID -Region $Region -AMIID $AMIID} | Should -Throw
+            {$result = Find-MeInstance -InstanceID $InstanceID -Region $Region -AMIID $AMIID} | Should -Throw
         }
     }
 }

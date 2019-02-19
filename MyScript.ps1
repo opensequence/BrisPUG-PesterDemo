@@ -55,9 +55,9 @@ $VerbosePreference = "SilentlyContinue"
 #====================================================================================================
 #region Functions
 
-#region Find-EC2Instance
+#region Find-MeInstance
 
-function Find-EC2Instance {
+function Find-MeInstance {
     [CmdletBinding()]
     Param (
         [parameter(Mandatory = $True, Position = 1)]
@@ -89,7 +89,7 @@ function Find-EC2Instance {
     }
 
 }
-#endregion Find-EC2Instance
+#endregion Find-MeInstance
 
 #endregion Functions
 
@@ -110,7 +110,7 @@ If(-not $InstanceID){
 #retrieve the AMI ID of the Instance
 try {
     Write-Output "START: Retrieving EC2 Details for Instance: $($InstanceID)"
-    $MatchingEC2Instance = Find-EC2Instance -InstanceID "$($InstanceID)" -Region $Region -AMIID "$($AMIID)"
+    $MatchingEC2Instance = Find-MeInstance -InstanceID "$($InstanceID)" -Region $Region -AMIID "$($AMIID)"
     Write-Output "SUCCESS: Retrieving EC2 Details for Instance: $($InstanceID)"
 } catch {
     Write-Error "ERROR: Retrieving EC2 Details for Instance: $($InstanceID) ErrorMessage: $($_.Exception.Message)"
