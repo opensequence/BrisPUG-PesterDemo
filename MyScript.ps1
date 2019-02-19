@@ -117,6 +117,11 @@ try {
     Exit
 }
 
+If(-not $MatchingEC2Instance){
+    Write-Output "Instance does not match that AMI!"
+    Exit
+}
+
 
 
 
