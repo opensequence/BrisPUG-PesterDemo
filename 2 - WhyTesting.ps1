@@ -56,7 +56,7 @@ function Find-MeInstance {
         Write-Verbose "$($EC2InstanceDetail.Instances.InstanceType) Matches one of Provided InstanceTypes: $($InstanceType)"
         return $EC2InstanceDetail
     } else {
-        Write-Verbose "$($EC2InstanceDetail.Instances.InstanceType) does NOT Match one of Provided AMIID: $($InstanceType)"
+        Write-Verbose "$($EC2InstanceDetail.Instances.InstanceType) does NOT Match one of Provided InstanceType: $($InstanceType)"
         return $null
     }
     }
