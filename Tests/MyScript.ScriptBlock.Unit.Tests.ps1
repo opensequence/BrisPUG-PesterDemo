@@ -1,13 +1,16 @@
-Describe Set-AWSTag {
+Describe MyScript {
     #Generate a function from the runbook
     $TemporaryFileName = ".\PesterTempFile.ps1"
     Write-Output "Function MyScript {"  | Out-File $TemporaryFileName
     foreach ($Line in (Get-Content "MyScript.ps1")) {
         #Replace Exits with Throws (to allow us to test for them)
         $Line = $Line -ireplace [regex]::Escape("exit"), "Throw"
+        #Comment out dot sources (specifiy them in testing)
+        $Line = $Line -ireplace [regex]::Escape(". ."), "#. ."
         Write-Output $Line  | Out-File $TemporaryFileName -Append
     }
     Write-Output "}"  | Out-File $TemporaryFileName -Append
+
 
     #Dotsource in the Powershell Script
     . .\PesterTempFile.ps1
