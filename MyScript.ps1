@@ -37,7 +37,7 @@ Param(
     [string]$RegionID,
 
     [Parameter(Mandatory = $false)]
-    [string]$AMIID
+    [string[]]$AMIID
 
 )
 
@@ -97,7 +97,7 @@ function Find-MeInstance {
 #                                          Initialize Code
 #====================================================================================================
 #region Initialize Code
-If(-not $InstanceID){
+If (-not $InstanceID) {
     Exit
 }
 
@@ -117,9 +117,11 @@ try {
     Exit
 }
 
-If(-not $MatchingEC2Instance){
+If (-not $MatchingEC2Instance) {
     Write-Output "Instance does not match that AMI!"
-    Exit
+    Publish-SNSMessage
+} else {
+    #Tag something
 }
 
 
