@@ -1,13 +1,5 @@
 Import-Module "AWSPowerShell.NetCore"
 Describe Find-MeInstance {
-    #Mocks
-    Mock New-EC2Tag
-    Mock Get-EC2Instance
-    Mock Get-EC2Tag
-    Mock Publish-SNSMessage
-    Mock Write-Output
-    Mock Get-EC2Volume
-    #Dot Source Script
     . './1 - WhyTesting.ps1'
     Context "When a Instance is created with the specified AMI" {
         $EC2InstanceObject = Get-Content .\Tests\When_a_Instance_is_created_with_the_specified_AMI.json | ConvertFrom-JSON

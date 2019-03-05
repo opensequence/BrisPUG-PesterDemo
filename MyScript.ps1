@@ -119,9 +119,12 @@ try {
 
 If (-not $MatchingEC2Instance) {
     Write-Output "Instance does not match that AMI!"
+    #Notify
     Publish-SNSMessage
 } else {
-    #Tag something
+    Write-Output "SUCCESS: Tagging Instance: $($InstanceID)"
+    #Tag
+    New-EC2Tag
 }
 
 

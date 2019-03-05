@@ -39,26 +39,26 @@ function Find-MeInstance {
     } catch {
         Throw "ERROR: Retrieving EC2 Details for Instance: $($InstanceID) ErrorMessage: $($_.Exception.Message)"
     }
-    If($AMIID){
-    #Compare AMI ID wth provided ID
-    If ($AMIID -contains $($EC2InstanceDetail.Instances.ImageId)) {
-        Write-Verbose "$($EC2InstanceDetail.Instances.ImageId) Matches one of Provided AMIID: $($AMIID)"
-        return $EC2InstanceDetail
-    } else {
-        Write-Verbose "$($EC2InstanceDetail.Instances.ImageId) does NOT Match one of Provided AMIID: $($AMIID)"
-        return $null
+    If ($AMIID) {
+        #Compare AMI ID wth provided ID
+        If ($AMIID -contains $($EC2InstanceDetail.Instances.ImageId)) {
+            Write-Verbose "$($EC2InstanceDetail.Instances.ImageId) Matches one of Provided AMIID: $($AMIID)"
+            return $EC2InstanceDetail
+        } else {
+            Write-Verbose "$($EC2InstanceDetail.Instances.ImageId) does NOT Match one of Provided AMIID: $($AMIID)"
+            return $null
+        }
     }
-}
-    If($InstanceType){
-    #Compare InstanceType wth provided Types
-    #TODO-NOW I've Made a mistake, can you see it?
-    If ($InstanceType -contains $($EC2InstanceDetail.Instances.InstaceType)) {
-        Write-Verbose "$($EC2InstanceDetail.Instances.InstanceType) Matches one of Provided InstanceTypes: $($InstanceType)"
-        return $EC2InstanceDetail
-    } else {
-        Write-Verbose "$($EC2InstanceDetail.Instances.InstanceType) does NOT Match one of Provided InstanceType: $($InstanceType)"
-        return $null
-    }
+    If ($InstanceType) {
+        #Compare InstanceType wth provided Types
+        #TODO-NOW I've Made a mistake, can you see it?
+        If ($InstanceType -contains $($EC2InstanceDetail.Instances.InstaceType)) {
+            Write-Verbose "$($EC2InstanceDetail.Instances.InstanceType) Matches one of Provided InstanceTypes: $($InstanceType)"
+            return $EC2InstanceDetail
+        } else {
+            Write-Verbose "$($EC2InstanceDetail.Instances.InstanceType) does NOT Match one of Provided InstanceType: $($InstanceType)"
+            return $null
+        }
     }
 
 }
