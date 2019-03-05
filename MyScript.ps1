@@ -110,7 +110,8 @@ If (-not $InstanceID) {
 #retrieve the AMI ID of the Instance
 try {
     Write-Output "START: Retrieving EC2 Details for Instance: $($InstanceID)"
-    $MatchingEC2Instance = Find-MeInstance -InstanceID "$($InstanceID)" -Region $Region -AMIID "$($AMIID)"
+    #TODO-NOW Can you see the mistake I've made here?
+    $MatchingEC2Instance = Find-MeInstance -InstanceID "$($InstanceID)" -Region $Region -AMIID "$($AMIID)" #it's here
     Write-Output "SUCCESS: Retrieving EC2 Details for Instance: $($InstanceID)"
 } catch {
     Write-Error "ERROR: Retrieving EC2 Details for Instance: $($InstanceID) ErrorMessage: $($_.Exception.Message)"
